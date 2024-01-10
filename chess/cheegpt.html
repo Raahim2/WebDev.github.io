@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chess Game</title>
+    
+</head>
+<style>
+    #board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width: 400px;
+    height: 400px;
+    margin: 20px auto;
+    border: 2px solid #000;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.black {
+    background-color: #b58863;
+    color: #fff;
+}
+
+.white {
+    background-color: #f0d9b5;
+    color: #000;
+}
+
+</style>
+<body>
+    <div id="board"></div>
+
+  
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const board = document.getElementById('board');
+    let selectedPiece = null;
+    let turn = 'w'; // 'w' for white, 'b' for black
+
+    // Chessboard initialization
+    const pieces = ['♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜',
+                    '♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟',
+                    '', '', '', '', '', '', '', '',
+                    '', '', '', '', '', '', '', '',
+                    '', '', '', '', '', '', '', '',
+                    '', '', '', '', '', '', '', '',
+                    '♙', '♙', '♙', '♙', '♙', '♙', '♙', '♙',
+                    '♖', '♘', '♗', '♕', '♔', '♗', '♘', '♖'];
+
+    // Create the chessboard
+    for (let i = 0; i < 64; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'cell ' + getColor(i);
+        cell.textContent = pieces[i];
+        cell.addEventListener('click', cellClicked);
+        board.appendChild(cell);
+    }
+
+    // Determine the color of each cell
+    function getColor(index) {
+        const row = Math.floor(index / 8);
+        const col = index % 8;
+        return (row + col) % 2 === 0 ? 'white' : 'black';
+    }
+
+    // Handle cell click event
+    function cellClicked() {
+        const currentPiece = this.textContent;
+
+        if (!selectedPiece) {
+            // No piece selected, select the current piece if it's the player's turn
+            if (currentPiece && currentPiece.toLowerCase() === turn) {
+                selectedPiece = this;
+                this.classList.add('selected');
+            }
+        } else {
+                        // Piece already selected, check if the move is valid
+                        const isValidMove = validateMove(selectedPiece, this);
+
+if (isValidMove) {
+    // Move the piece to the new cell
+    this.textContent = selectedPiece.textContent;
+    selectedPiece.textContent = '';
+    this.classList.remove('selected');
+    selectedPiece = null;
+
+    // Switch turns
+    turn = turn === 'w' ? 'b' : 'w';
+} else {
+    // Invalid move, deselect the piece
+    selectedPiece.classList.remove('selected');
+    selectedPiece = null;
+}
+}
+}
+
+// Validate the move of a selected piece
+function validateMove(selectedPiece, targetCell) {
+// Get the indices of the selected piece and target cell
+const selectedIndex = [...board.children].indexOf(selectedPiece);
+const targetIndex = [...board.children].indexOf(targetCell);
+
+// Perform the validation logic based on the selected piece and target cell
+
+// Example validation for a pawn piece (more validation logic needs to be added for other pieces)
+const selectedPieceValue = selectedPiece.textContent.toLowerCase();
+const isWhitePiece = selectedPieceValue === selectedPiece.textContent;
+const direction = isWhitePiece ? -1 : 1;
+const startingRow = isWhitePiece ? 6 : 1;
+const moveLimit = selectedIndex >= startingRow * 8 && selectedIndex < (startingRow + 2) * 8 ? 2 : 1;
+
+// Check if the move is within the allowed limits
+if (Math.abs(selectedIndex - targetIndex) > moveLimit * 8) {
+return false;
+}
+
+// Check if the move is diagonal and capturing an opponent's piece
+if (Math.abs(selectedIndex - targetIndex) === 7 || Math.abs(selectedIndex - targetIndex) === 9) {
+const targetPiece = targetCell.textContent.toLowerCase();
+if (targetPiece === targetCell.textContent && !isWhitePiece) {
+    return true;
+} else if (targetPiece !== targetCell.textContent && isWhitePiece) {
+    return true;
+} else {
+    return false;
+}
+}
+
+// Check if the move is forward by one cell
+if (selectedIndex + direction * 8 === targetIndex && !targetCell.textContent) {
+return true;
+}
+
+return false;
+}
+});
+
+
+</script>
+</html>
