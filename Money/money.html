@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk game</title>
+</head>
+<style>
+    .head{
+        text-align: center;
+        font-size: 50px;
+        background-color: black;
+        font-weight: 900;
+        font-family: 'Times New Roman', Times, serif;
+        color: white;
+    }
+    .center{
+        text-align: center;
+    }
+    .start{
+        text-align: center;
+        border: 5px solid black;
+        background-color: yellow;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 75px;
+        margin-top: 100px;
+    }
+    .rno{
+        text-align: center;
+        font-size: 40px;
+        margin-top: 30px;
+    }
+    .font{
+    color: #fff;
+    font-family: "Lilita One",sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    text-shadow: -2px -2px 0 #040404, 0 -2px 0 #040404, 2px -2px 0 #040404, 2px 0 0 #040404, 2px 2px 0 #040404, 0 2px 0 #040404, -2px 2px 0 #040404, -2px 0 0 #040404, 0 3.5px 0 #040404, -2px 3.5px 0 #040404, 2px 3.5px 0 #040404;
+    text-transform: none;
+    text-transform: uppercase}
+
+    
+
+</style>
+<body>
+    <div class="head">Money = <span id="money">1000$</span></div>
+
+
+
+    <div class="rno font" id="rno">
+        
+    </div>
+
+    <div class="rno  font" id="rto">
+        
+    </div>
+
+    <div class="rno font" id="winc">
+        
+    </div>
+
+
+
+    <div class="center">
+        <button class="start" onclick="start()">Play</button>
+    </div>
+
+</body>
+<script>
+   let money = 1000
+    console.log("Round 1 for 20$");
+
+
+function start() {
+    
+    function random(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+    
+    let rno = document.getElementById('rno');
+    let rto= document.getElementById('rto');
+    let win = document.getElementById('winc');
+    let moneyy = document.getElementById('money');
+
+
+    
+    p1= random(1,100)
+    rno.innerHTML=["Your Random Number :"+ p1 ]
+
+    let p2 = random(1,100)
+    rto.innerHTML=["Opponents Random Number :"+  p2]
+
+
+
+
+    if(p1>p2){
+        
+        money = money + 20;
+        winc.innerHTML=["You win"]
+        moneyy.innerHTML=money+"$"
+
+
+    }
+    else if(p1<p2){
+        
+        money = money - 20;
+        winc.innerHTML=["You lose"]
+        moneyy.innerHTML=money+"$"
+
+    }
+    else{
+        winc.innerHTML=["Its a Draw"]
+        moneyy.innerHTML=money+"$"
+ 
+    }
+
+    } 
+
+
+
+
+</script>
+</html>

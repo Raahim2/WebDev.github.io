@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>My Page</title>
+</head>
+<style>
+    .card{
+      border: 7px solid black;
+      border-radius: 7px;
+      width: 150px;
+      height: 180px;
+      margin: 45px;
+      display: block;
+    }
+    .mainbox{
+      display: flex;
+      justify-self: center;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+    h1{
+      text-align: center;
+    }
+    .button{
+      height: 50px;
+      width: 300px;
+      font-size: 30px;
+      text-align: center;
+      display: inline-block;
+      margin-left: 250px;
+      font-weight: 900;
+      border: 5px solid ;
+      border-radius: 30px;
+      background-color: green;
+
+    }
+    /* .float{
+      float: right;
+    } */
+    
+</style>
+<body>
+   
+
+<div class="mainbox">
+   <div class="card" id="card" onclick="imp()">
+   <img id="my-image" src="https://cdn.royaleapi.com/static/img/cards-150/goblins.png?t=77df835fc" style="display: none;" >
+   <img id="my-image21" src="https://cdn.royaleapi.com/static/img/cards-150/knight.png?t=77df835fc" style="display: none;">
+   <img id="my-image31" src="https://cdn.royaleapi.com/static/img/cards-150/goblin-gang.png?t=77df835fc" style="display: none;">
+   <img id="my-image41" src="https://cdn.royaleapi.com/static/img/cards-150/mini-pekka.png?t=77df835fc" style="display: none;">
+   <img id="my-image51" src="https://cdn.royaleapi.com/static/img/cards-150/hog-rider.png?t=77df835fc" style="display: none;">
+   </div>
+
+   
+
+   <div class="card" id="card2" onclick="imp2()">
+      <img id="my-image2" src="https://cdn.royaleapi.com/static/img/cards-150/goblins.png?t=77df835fc" style="display: none;" >
+   </div>
+
+   <div class="card" id="card3" onclick="imp3()">
+      <img id="my-image3" src="https://cdn.royaleapi.com/static/img/cards-150/goblin-gang.png?t=77df835fc" style="display: none;">
+   </div>
+
+   <div class="card" id="card4" onclick="imp4()">
+      <img id="my-image4" src="https://cdn.royaleapi.com/static/img/cards-150/mini-pekka.png?t=77df835fc" style="display: none;">
+   </div>
+
+   <div class="card" id="card5" onclick="imp5()">
+      <img id="my-image5" src="https://cdn.royaleapi.com/static/img/cards-150/hog-rider.png?t=77df835fc" style="display: none;">
+   </div>
+
+   <div class="card" id="card6" onclick="imp6()">
+      <img id="my-image6" src="https://cdn.royaleapi.com/static/img/cards-150/cannon.png?t=77df835fc" style="display: none;">
+   </div>
+
+   <div class="card" id="card7" onclick="imp7()">
+      <img id="my-image7" src="https://cdn.royaleapi.com/static/img/cards-150/bomb-tower.png?t=77df835fc" style="display: none;">
+   </div>
+
+   <div class="card" id="card8" onclick="imp8()">
+      <img id="my-image8" src="https://cdn.royaleapi.com/static/img/cards-150/skeletons.png?t=77df835fc" style="display: none;">
+   </div>
+
+   <div class="card" id="card9" onclick="imp9()">
+      <img id="my-image9" src="https://cdn.royaleapi.com/static/img/cards-150/barbarians.png?t=77df835fc" style="display: none;">
+   </div>
+
+   <div class="card" id="card10" onclick="imp10()">
+      <img id="my-image10" src="https://static.vecteezy.com/system/resources/previews/009/354/734/original/bomb-clipart-design-illustraiton-free-png.png" height="180px"  style="display: none;">
+   </div>
+
+   <button class="button">End</button>
+   <button class="button float">Next Round</button>
+
+   
+</div>
+
+
+   <script>
+
+function random(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function imp(){
+      let card = document.getElementById("card");
+      let myImage = document.getElementById("my-image"); 
+      let myImage21 = document.getElementById("my-image21"); 
+      let myImage31= document.getElementById("my-image31"); 
+      let myImage41 = document.getElementById("my-image41"); 
+      let myImage51 = document.getElementById("my-image51"); 
+
+
+      r1 = random(1,5)
+      card.addEventListener("click", () => { 
+      if(r1==1){ 
+            myImage.style.display = "flex";
+      }
+      if(r1==2){ 
+            myImage21.style.display = "flex";
+      }
+      if(r1==3){ 
+            myImag31.style.display = "flex";
+      }
+      if(r1==4){ 
+            myImage41.style.display = "flex";
+      }
+      if(r1==5){ 
+            myImage51.style.display = "flex";
+      }
+      
+      
+      });}
+
+
+
+
+
+
+
+
+      function imp2() {
+        let card = document.getElementById("card2");
+      let myImage = document.getElementById("my-image2"); 
+      card.addEventListener("click", () => { 
+         myImage.style.display = "flex"; 
+      });
+    }
+
+    function imp3() {
+        const card = document.getElementById("card3");
+      const myImage = document.getElementById("my-image3"); 
+      card.addEventListener("click", () => { 
+         myImage.style.display = "flex"; 
+      });
+    }
+
+    function imp4() {
+        const card = document.getElementById("card4");
+      const myImage = document.getElementById("my-image4"); 
+      card.addEventListener("click", () => { 
+         myImage.style.display = "flex"; 
+      });
+    }
+
+    function imp5() {
+        const card = document.getElementById("card5");
+      const myImage = document.getElementById("my-image5"); 
+      card.addEventListener("click", () => { 
+         myImage.style.display = "flex"; 
+      });
+    }
+      
+    function imp6() {
+        const card = document.getElementById("card6");
+      const myImage = document.getElementById("my-image6"); 
+      card.addEventListener("click", () => { 
+         myImage.style.display = "flex"; 
+      });
+    }
+
+    function imp7() {
+        const card = document.getElementById("card7");
+      const myImage = document.getElementById("my-image7"); 
+      card.addEventListener("click", () => { 
+         myImage.style.display = "flex"; 
+      });
+    }
+
+    function imp8() {
+        const card = document.getElementById("card8");
+      const myImage = document.getElementById("my-image8"); 
+      card.addEventListener("click", () => { 
+         myImage.style.display = "flex"; 
+      });
+    }
+
+    function imp9() {
+        const card = document.getElementById("card9");
+      const myImage = document.getElementById("my-image9"); 
+      card.addEventListener("click", () => { 
+         myImage.style.display = "flex"; 
+      });
+    }
+
+    function imp10() {
+        const card = document.getElementById("card10");
+      const myImage = document.getElementById("my-image10"); 
+      card.addEventListener("click", () => { 
+         myImage.style.display = "flex"; 
+      });
+    }
+
+
+   </script>
+</body>
+</html>

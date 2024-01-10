@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .background{
+        height: 100vh;
+        width: 100vw;
+        background: url(https://external-preview.redd.it/GB5Adyp5zzQcoI4Jpbgf8tKfJ6GxgHmT8NHgtcrpi3o.png?auto=webp&s=5061d0c1e9c2aa20f503796ed065bef4ddbd363f) fixed center center/cover;
+    }
+    .img{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+    .imgs{
+        margin-top: 150px;
+    }
+    .cards{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .dis{
+        font-size: 50px;
+    }
+    .no{
+        margin-left: -100px;
+        margin-top: 91px;
+    }
+    .box{
+        border : 4px solid ;
+        height: 80px;
+        width: 50px;
+        
+    }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="cards">
+        <img id="image" src="https://cdn.royaleapi.com/static/img/cards-150/goblins.png?t=77df835fc" alt="">
+        <h2 id="name" class="dis">Goblins</h2>
+        <p class="dis , no" id="num">X 53</p>
+        </div>
+    
+        <div class="img">
+            <div class="imgs" onclick="chest()"><img src="https://www.pngkit.com/png/full/243-2435230_clash-royale-epic-chest-png-png-transparent-library.png" alt="" height="200px"></div>
+        </div>
+    </div>
+
+    <button class="box" id="img">hi</button>
+    <img src="https://cdn.royaleapi.com/static/img/cards-150/goblins.png?t=77df835fc" alt="" id="myimg">
+    
+</body>
+<script>
+
+    function random(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function show() {
+            /* Access image by id and change
+            the display property to block*/
+            document.getElementById('image')
+                .style.display = "block";
+            document.getElementById('btnID')
+                .style.display = "none";
+        }
+
+    let card = document.getElementById("name")
+    let number = document.getElementById("num")  
+    let img = document.getElementById("image")   
+    // let ig = document.createElement("https://cdn.royaleapi.com/static/img/cards-150/knight.png?t=77df835fc")
+
+
+
+    let arr = ["Goblins" , "Kinght" , "Archers"]
+
+    function chest() {
+        
+    let rd = random(0,2)
+    let rd2 = random(20 , 45)
+    card.innerHTML =  arr[rd];
+    console.log(rd2)
+    number.innerHTML = ("X "+ rd2)
+    // img.innerHTML = show(bg.png)
+
+
+
+
+    const imagebox = document.getElementById("img");
+    const myImage = document.getElementById("myimg");
+    showImageButton.addEventListener("click", () => { 
+         myImage.style.display = "block"; 
+      });
+    }
+   
+
+
+
+</script>
+</html>
