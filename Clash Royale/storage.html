@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Collection | CR</title>
+</head>
+<style>
+    .mainbox{
+        display: flex;
+        flex-wrap: wrap;
+        width: 75vw;
+        margin: auto;
+        justify-content: center;
+    }
+    .sample{
+        margin: 15px;
+    }
+    p{
+        text-align: center;
+        margin: 0;
+    }
+    .font{
+    color: #fff;
+    font-family: "Lilita One",sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    text-shadow: -2px -2px 0 #040404, 0 -2px 0 #040404, 2px -2px 0 #040404, 2px 0 0 #040404, 2px 2px 0 #040404, 0 2px 0 #040404, -2px 2px 0 #040404, -2px 0 0 #040404, 0 3.5px 0 #040404, -2px 3.5px 0 #040404, 2px 3.5px 0 #040404;
+    text-transform: none;
+
+    }
+</style>
+<body>
+    <div class="mainbox" id="flex">
+    </div>
+</body>
+
+<script>
+    
+    let CARDS = ['Arrows', 'Bomber', 'Cannon', 'Electro spirit', 'Elite barbarians', 'Fire spirit', 'Giant snowball', 'Goblin gang', 'Goblins', 'Minion horde', 'Minions', 'Rascals', 'Royal delivery', 'Skeleton barrel', 'Skeleton dragons', 'Spear goblins', 'Tesla', 'Zap', 'Barbarian hut', 'Battle healer', 'Battle ram', 'Bomb tower', 'Dart goblin', 'Earthquake', 'Elixir collector', 'Elixir golem', 'Fireball', 'Flying machine', 'Furnace', 'Giant', 'Goblin cage', 'Goblin hut', 'Heal spirit', 'Hog rider', 'Ice golem', 'Inferno tower', 'Mega minion', 'Mini pekka', 'Musketeer', 'Rocket', 'Royal hogs', 'Three musketeers', 'Tombstone', 'Wizard', 'Zappies', 'Baby dragon', 'Balloon', 'Barbarian barrel', 'Bowler', 'Cannon cart', 'Clone', 'Dark prince', 'Electro dragon', 'Electro giant', 'Executioner', 'Freeze', 'Giant skeleton', 'Goblin barrel', 'Goblin drill', 'Goblin giant', 'Golem', 'Guards', 'Hunter', 'Lightning', 'Mirror', 'Pekka', 'Poison', 'Prince', 'Rage', 'Skeleton army', 'Tornado', 'Wall breakers', 'Witch', 'X bow', 'Bandit', 'Electro wizard', 'Fisherman', 'Graveyard', 'Ice wizard', 'Inferno dragon', 'Lava hound', 'Lumberjack', 'Magic archer', 'Mega knight', 'Miner', 'Mother witch', 'Night witch', 'Phoenix', 'Princess', 'Ram rider', 'Royal ghost', 'Sparky', 'The log', 'Archer queen', 'Golden knight', 'Little prince', 'Mighty miner', 'Monk', 'Skeleton king']
+    let flex=document.getElementById('flex')
+    function processString(inputString) {  
+    let lowercaseString = inputString.toLowerCase();
+    let trimmedString = lowercaseString.replace(' ', '-').trim();
+    return trimmedString+".avif";
+}
+
+    for (let i = 0; i < CARDS.length; i++) {
+        let div=document.createElement('div')
+        div.className='sample font'
+
+        let img=document.createElement('img')
+        img.src='/Clash Royale/images/All/'+processString(CARDS[i])
+        div.appendChild(img)
+
+        let p=document.createElement('p')
+        p.textContent=localStorage.getItem(CARDS[i]);
+        div.appendChild(p)
+
+        flex.appendChild(div)
+    }
+</script>
+
+</html>
