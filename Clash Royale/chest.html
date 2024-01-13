@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .screen{
+        width: 75vw;
+        margin: auto;
+        height: 90vh;
+    }
+    .silver {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-silver.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .golden {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-golden.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .towertroop {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-towertroop.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .light {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-lightning.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .silver {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-silver.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .draft {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-draft.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .crate {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-overflowinggoldcrate.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .magical {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-magical.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .giant {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-giant.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .megalightning {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-megalightning.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .legend {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-legendary.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .ryc {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-royalwild.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .epic {
+        background-image: url(https://cdns3.royaleapi.com/cdn-cgi/image/w=128,h=128,format=webp,quality=80/static/img/chests/chest-epic.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .chest {
+        margin: 25px;
+        width: 150px;
+        height: 150px;
+        border-radius: 5px;
+        position: absolute;
+        right: 45%;
+        bottom: 14%;
+    }
+    .info{
+        display: flex;
+        flex-wrap: wrap;
+        width: 500px;
+        position: absolute;
+        left:30%;
+        margin-top: 5%;
+    }
+    .f20{
+        font-size: 30px;
+        margin: 10px;
+    }
+
+    .font{
+    color: #fff;
+    font-family: "Lilita One",sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    text-shadow: -2px -2px 0 #040404, 0 -2px 0 #040404, 2px -2px 0 #040404, 2px 0 0 #040404, 2px 2px 0 #040404, 0 2px 0 #040404, -2px 2px 0 #040404, -2px 0 0 #040404, 0 3.5px 0 #040404, -2px 3.5px 0 #040404, 2px 3.5px 0 #040404;
+    text-transform: none;
+
+    }
+    .box{
+        border-radius: 3px;
+        padding: 10px;
+        background-color: red;
+        max-height: 30px;
+        max-width: 15px;
+        border: 2px solid black;
+        
+        position: absolute;
+        right: 45%;
+        bottom: 36%;
+        
+    }
+
+    
+    
+     
+</style>
+<body>
+    <div class="screen" onclick="main()">
+        <div class="info">
+        <div ><img id="card" src="" alt=""></div>
+        <div id="cname" class="f20 font"></div>
+        <div id="camt" class="f20 font"></div>
+        
+        </div>
+        
+        <div>
+        <div id="num" class="box font"></div>
+        <div class="chest" id="chest_name"></div>
+        </div>
+    </div>
+</body>
+<script>
+    let uri=new URLSearchParams(window.location.search);
+    let chest=uri.get('chest')
+    
+    let SETTINGS={};
+    let chest_name=document.getElementById("chest_name")
+    let cname=document.getElementById("cname")
+    let camt=document.getElementById("camt")
+    let card=document.getElementById("card")
+    let num=document.getElementById("num")
+    
+    let COMMON = ['Arrows', 'Bomber', 'Cannon', 'Electro spirit', 'Elite barbarians', 'Fire spirit', 'Giant snowball', 'Goblin gang', 'Goblins', 'Minion horde', 'Minions', 'Rascals', 'Royal delivery', 'Skeleton barrel', 'Skeleton dragons', 'Spear goblins', 'Tesla', 'Zap']
+    let RARE =['Barbarian hut', 'Battle healer', 'Battle ram', 'Bomb tower', 'Dart goblin', 'Earthquake', 'Elixir collector', 'Elixir golem', 'Fireball', 'Flying machine', 'Furnace', 'Giant', 'Goblin cage', 'Goblin hut', 'Heal spirit', 'Hog rider', 'Ice golem', 'Inferno tower', 'Mega minion', 'Mini pekka', 'Musketeer', 'Rocket', 'Royal hogs', 'Three musketeers', 'Tombstone', 'Wizard', 'Zappies']
+    let EPIC =['Baby dragon', 'Balloon', 'Barbarian barrel', 'Bowler', 'Cannon cart', 'Clone', 'Dark prince', 'Electro dragon', 'Electro giant', 'Executioner', 'Freeze', 'Giant skeleton', 'Goblin barrel', 'Goblin drill', 'Goblin giant', 'Golem', 'Guards', 'Hunter', 'Lightning', 'Mirror', 'Pekka', 'Poison', 'Prince', 'Rage', 'Skeleton army', 'Tornado', 'Wall breakers', 'Witch', 'X bow']
+    let LEGENDARY=['Bandit', 'Electro wizard', 'Fisherman', 'Graveyard', 'Ice wizard', 'Inferno dragon', 'Lava hound', 'Lumberjack', 'Magic archer', 'Mega knight', 'Miner', 'Mother witch', 'Night witch', 'Phoenix', 'Princess', 'Ram rider', 'Royal ghost', 'Sparky', 'The log']
+    let CHAMPION=['Archer queen', 'Golden knight', 'Little prince', 'Mighty miner', 'Monk', 'Skeleton king']
+
+    chest_name.classList.add(chest)
+    document.title= chest.toUpperCase()
+
+    if(chest=='silver'){
+        SETTINGS={
+            'ncard':3,
+            'code1':"CRR"
+        }
+    }
+    if(chest=='golden'){
+        SETTINGS={
+            'ncard':4,
+            'code1':'CCRR'
+        }
+    }
+    if(chest=='towertroop'){
+        SETTINGS={
+            'ncard':1,
+            'code1':'L'
+        }
+    }
+    if(chest=='crate'){
+        SETTINGS={
+            'ncard':1,
+            'code1':'H'
+        }
+    }
+    if(chest=='epic'){
+        SETTINGS={
+            'ncard':5,
+            'code1':'EEEEE'
+        }
+    }
+    if(chest=='giant'){
+        SETTINGS={
+            'ncard':5,
+            'code1':'CCCRR'
+        }
+    }
+    if(chest=='light'){
+        SETTINGS={
+            'ncard':4,
+            'code1':'CCRE'
+        }
+    }
+    if(chest=='magical'){
+        SETTINGS={
+            'ncard':6,
+            'code1':'CCRREL'
+        }
+    }
+    if(chest=='megalightning'){
+        SETTINGS={
+            'ncard':8,
+            'code1':'CCRREELH'
+        }
+    }
+    if(chest=='legend'){
+        SETTINGS={
+            'ncard':1,
+            'code1':'L'
+        }
+    }
+    if(chest=='ryc'){
+        SETTINGS={
+            'ncard':5,
+            'code1':'CRELH'
+        }
+    }
+    if(chest=='draft'){
+        SETTINGS={
+            'ncard':8,
+            'code1':'CCRREELH',
+        }
+    }
+    num.innerHTML=SETTINGS['ncard'];
+
+    
+    function rnumber(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+
+}
+    function processString(inputString) {  
+    let lowercaseString = inputString.toLowerCase();
+    let trimmedString = lowercaseString.replace(' ', '-').trim();
+    return trimmedString+".avif";
+}
+    function update_storage(cname,inc){
+        let current_amt=parseInt(localStorage.getItem(cname));
+        let upd=current_amt+inc;
+        localStorage.setItem(cname,upd);
+    }
+
+    function get_chest(){
+        let result=new Set();
+        let amount=[];
+        let urls=new Set();
+        let pick;
+        let amt;
+        let url;
+        let code=SETTINGS['code1']
+
+        for (let i = 0; i < code.length+1; i++) {
+            if(code[i]=='C'){
+                pick=COMMON[rnumber(0,(COMMON.length)-1)]
+                amt=rnumber(34,65);
+                url="/Clash Royale/images/commen/"+processString(pick);
+            }
+            if(code[i]=='R'){
+                pick=RARE[rnumber(0,(RARE.length)-1)]
+                amt=rnumber(7,14)
+                url="/Clash Royale/images/rare/"+processString(pick);
+            }
+            if(code[i]=='E'){
+                pick=EPIC[rnumber(0,(EPIC.length)-1)]
+                amt=rnumber(2,5)
+                url="/Clash Royale/images/epic/"+processString(pick);
+            }
+            if(code[i]=='L'){
+                pick=LEGENDARY[rnumber(0,(LEGENDARY.length)-1)]
+                amt=rnumber(1,2)
+                url="/Clash Royale/images/legendary/"+processString(pick);
+            }
+            if(code[i]=='H'){
+                pick=CHAMPION[rnumber(0,(CHAMPION.length)-1)]
+                amt=rnumber(1,1)
+                url="/Clash Royale/images/champion/"+processString(pick);
+            }
+                        
+            result.add(pick)
+            amount.push(amt)
+            urls.add(url)
+            
+        }
+       
+        return {
+        card_cycle: Array.from(result),
+        amount_cards: Array.from(amount),
+        urls_cycle: Array.from(urls)
+    }
+        
+    }
+ 
+
+    let c=get_chest()
+    let card_cycle=c.card_cycle
+    let amount_cards=c.amount_cards
+    let urls_cycle=c.urls_cycle
+
+    console.log(card_cycle)
+
+    let number=SETTINGS['ncard']-1
+    let z=0;
+
+    function main() {
+        camt.innerHTML="X"+amount_cards[z];
+        cname.innerHTML=card_cycle[z]
+        card.src= urls_cycle[z]
+        num.innerHTML=number
+
+        update_storage(card_cycle[z],amount_cards[z]);
+
+        number=number-1
+        z=z+1
+        
+        
+        if(number== -2 ){
+            window.location.href="index.html"
+        }
+        
+    }
+        
+    
+
+
+
+
+</script>
+</html>
