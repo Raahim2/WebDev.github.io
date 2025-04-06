@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KBC Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Teko', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-black text-white flex">
+    <div class="side border-white border-2 border-t-0 border-b-0 border-l-0 h-[650px] w-[305px] overflow-y-auto">
+        <div class="prize text-center text-2xl py-2" id="p15">70,000,000</div>
+        <div class="prize text-center text-2xl py-2">10,000,000</div>
+        <div class="prize text-center text-2xl py-2">5,000,000</div>
+        <div class="prize text-center text-2xl py-2">2,500,000</div>
+        <div class="prize text-center text-2xl py-2">1,250,000</div>
+        <div class="prize text-center text-2xl py-2">640,000</div>
+        <div class="prize text-center text-2xl py-2">320,000</div>
+        <div class="prize text-center text-2xl py-2">160,000</div>
+        <div class="prize text-center text-2xl py-2">80,000</div>
+        <div class="prize text-center text-2xl py-2">40,000</div>
+        <div class="prize text-center text-2xl py-2">20,000</div>
+        <div class="prize text-center text-2xl py-2">10,000</div>
+        <div class="prize text-center text-2xl py-2">5,000</div>
+        <div class="prize text-center text-2xl py-2">3,000</div>
+        <div class="prize text-center text-2xl py-2">2,000</div>
+        <div class="prize text-center text-2xl py-2">1,000</div>
+    </div>
+    <div class="main mx-auto h-[400px] w-[700px] text-center text-3xl">
+        <div class="qs border-white border-2 p-2" id="mainqs">Question 1</div>
+        <div class="options grid grid-cols-1 gap-2" id="options">
+            <!-- Options will be added here dynamically -->
+        </div>
+        <div class="lifeline mt-4">
+            <button id="fiftyFifty" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">50/50</button>
+        </div>
+    </div>
+    <script>
+        let quesarr = ["What is the capital of France?", "What is the highest mountain in the world?", "What is the largest planet in our solar system?"];
+        let answers = [["Paris", "London", "Rome", "Berlin"], ["Mount Everest", "K2", "Kangchenjunga", "Lhotse"], ["Jupiter", "Saturn", "Mars", "Earth"]];
+        let correctAnswers = ["A", "A", "A"];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let usedFiftyFifty = false;
+
+        const mainqs = document.getElementById("mainqs");
+        const optionsContainer = document.getElementById("options");
+        const fiftyFiftyButton = document.getElementById("fiftyFifty");
+
+        function displayQuestion() {
+            mainqs.textContent = quesarr[currentQuestionIndex];
+            optionsContainer.innerHTML = "";
+
+            answers[currentQuestionIndex].forEach((answer, index) => {
+                const option = document.createElement("div");
+                option.classList.add("opt", "border-white", "border-2", "p-2", "cursor-pointer"); //added classes here
+                option.id = String.fromCharCode(65 + index);
+                option.textContent = answer;
+                option.addEventListener("click", checkAnswer);
+                optionsContainer.appendChild(option);
+            });
+        }
+
+        function checkAnswer(event) {
+            const selectedAnswer = event.target.id;
+            const isCorrect = selectedAnswer === correctAnswers[currentQuestionIndex];
+
+            if (isCorrect) {
+                event.target.classList.add("bg-green-500");
+            } else {
+                event.target.classList.add("bg-red-500");
+                const correctOption = document.getElementById(correctAnswers[currentQuestionIndex]);
+                correctOption.classList.add("bg-green-500");
+            }
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quesarr.length) {
+                    displayQuestion();
+                } else {
+                    alert("Game Over! Your score is: " + score);
+                }
+            }, 1500);
+        }
+
+        function applyFiftyFifty() {
+            if (usedFiftyFifty) return;
+            usedFiftyFifty = true;
+            fiftyFiftyButton.disabled = true;
+
+            const incorrectOptions = answers[currentQuestionIndex].filter((answer, index) => String.fromCharCode(65 + index) !== correctAnswers[currentQuestionIndex]);
+            const optionToRemove = incorrectOptions[Math.floor(Math.random() * incorrectOptions.length)];
+
+            const options = document.querySelectorAll(".opt");
+            options.forEach(option => {
+                if (option.textContent === optionToRemove) {
+                    option.remove();
+                }
+            });
+        }
+
+        fiftyFiftyButton.addEventListener("click", applyFiftyFifty);
+
+        displayQuestion();
+    </script>
+</body>
+</html>
