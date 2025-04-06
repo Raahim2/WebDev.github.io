@@ -2,215 +2,192 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>Document</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KBC Game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Teko', sans-serif;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            background-color: black;
+            color: white;
+        }
 
+        .side {
+            border: 3px solid white;
+            border-top: 0;
+            border-bottom: 0;
+            border-left: 0;
+            height: 650px;
+            width: 305px;
+            overflow-y: auto; /* Add scrollbar for long prize lists */
+        }
+
+        .prize {
+            text-align: center;
+            font-size: 20px; /* Reduced font size for better fit */
+            padding: 10px 0; /* Added padding for better spacing */
+        }
+
+        .prize.correct { /* Style for correct answers */
+            color: green;
+        }
+
+        .main {
+            height: 400px; /* Increased height to accommodate more elements */
+            width: 700px; /* Reduced width for better layout */
+            margin: auto;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column for better mobile responsiveness */
+            grid-gap: 10px;
+        }
+
+        .qs {
+            border: 3px solid white;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .opt {
+            border: 3px solid white;
+            padding: 10px;
+            cursor: pointer; /* Indicate that options are clickable */
+        }
+
+        .opt.correct { /* Style for correct options */
+            background-color: green;
+        }
+
+        .opt.incorrect { /* Style for incorrect options */
+            background-color: red;
+        }
+
+        .lifeline {
+            margin-top: 20px;
+        }
+
+        .lifeline button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
 </head>
-<style>
-    body{
-        font-family: 'Teko', sans-serif;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        /* filter: invert(100%); */
-        background-color: black;
-    }
-    .side{
-        border: 3px solid white;
-        border-top: 0;
-        border-bottom:0 ;
-        border-left: 0;
-        height: 650px;
-        width: 305px;
-        color: white;
-    }
-    .prize{
-        text-align: center;
-        font-size: 28px;
-    }
-    .main{
-        /* border: 3px solid black; */
-        height: 250px;
-        width: 1100px;
-        margin-top: auto;
-        text-align: center;
-        font-size: 40px;
-        color: white;
-    }
-    .options{
-        /* border: 3px solid; */
-        display: grid;
-        height: 150px;
-        grid-template-columns: auto auto;
-        grid-template-rows: auto auto;
-    }
-    .qs{
-        border: 3px solid white;
-        height: 55px;
-        width: 1025px;
-        margin: 10px;
-        
-    }
-    .opt{
-        border: 3px solid white;
-        height: 55px;
-        width: 500px; 
-        margin: 10px;
-        
-    }
-
-</style>
 <body>
-   <!-- <img src="https://navbharattimes.indiatimes.com/thumb/69355236/kbc-69355236.jpg?imgsize=428966&width=1200&height=900&resizemode=75" alt=""> -->
-   <div class="side">
-    <div class="prize">70000000</div>
-    <div class="prize">10000000</div>
-    <div class="prize">5000000</div>
-    <div class="prize">2500000</div>
-    <div class="prize">1250000</div>
-    <div class="prize">640000</div>
-    <div class="prize">320000</div>
-    <div class="prize">160000</div>
-    <div class="prize">80000</div>
-    <div class="prize">40000</div>
-    <div class="prize">20000</div>
-    <div class="prize">10000</div>
-    <div class="prize" id="p4">5000</div>
-    <div class="prize" id="p3">3000</div>
-    <div class="prize" id="p2">2000</div>
-    <div class="prize" id="p1">1000</div>
-   </div>
-   <div class="main">
-        <div class="qs" id = "mainqs">question 1</div>
-            <div class="options">
-                <div class="opt" id="A" onclick="checka()">op1</div>
-                <div class="opt" id="B" onclick="checkb()">op2</div>
-                <div class="opt" id="C" onclick="checkc()">op3</div>
-                <div class="opt" id="D" onclick="checkd()">op4</div>
-            </div>
+    <div class="side">
+        <div class="prize" id="p15">70,000,000</div>
+        <div class="prize">10,000,000</div>
+        <div class="prize">5,000,000</div>
+        <div class="prize">2,500,000</div>
+        <div class="prize">1,250,000</div>
+        <div class="prize">640,000</div>
+        <div class="prize">320,000</div>
+        <div class="prize">160,000</div>
+        <div class="prize">80,000</div>
+        <div class="prize">40,000</div>
+        <div class="prize">20,000</div>
+        <div class="prize">10,000</div>
+        <div class="prize">5,000</div>
+        <div class="prize">3,000</div>
+        <div class="prize">2,000</div>
+        <div class="prize">1,000</div>
+    </div>
+    <div class="main">
+        <div class="qs" id="mainqs">Question 1</div>
+        <div class="options" id="options">
+            <!-- Options will be added here dynamically -->
+        </div>
+        <div class="lifeline">
+            <button id="fiftyFifty">50/50</button>  <!-- Add lifelines -->
+        </div>
     </div>
 </body>
-
 <script>
-    let quesarr=["q1","q2","q3","q4","q5"]
-    let opa=["o1","o2","o3","o4","o5"]
-    let opb=["o1","o2","o3","o4","o5"]
-    let opc=["o1","o2","o3","o4","o5"]
-    let opd=["o1","o2","o3","o4","o5"]
-    let ansarr=["A","B","A","D","C"]
-    let ourarr=["","","","",""]
-    let ind = 0;
+    let quesarr = ["What is the capital of France?", "What is the highest mountain in the world?", "What is the largest planet in our solar system?"];
+    let answers = [["Paris", "London", "Rome", "Berlin"], ["Mount Everest", "K2", "Kangchenjunga", "Lhotse"], ["Jupiter", "Saturn", "Mars", "Earth"]];
+    let correctAnswers = ["A", "A", "A"]; // Correct answer for each question (A, B, C, or D)
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let usedFiftyFifty = false;
 
-    let p1=document.getElementById("p1")
-    let mainqs=document.getElementById("mainqs")
-    let A=document.getElementById("A")
-    let B=document.getElementById("B")
-    let C=document.getElementById("C")
-    let D=document.getElementById("D")
+    const mainqs = document.getElementById("mainqs");
+    const optionsContainer = document.getElementById("options");
+    const fiftyFiftyButton = document.getElementById("fiftyFifty");
 
+    function displayQuestion() {
+        mainqs.textContent = quesarr[currentQuestionIndex];
+        optionsContainer.innerHTML = ""; // Clear previous options
 
-    p1.style.color="green"
-    mainqs.innerHTML=quesarr[0]
-    A.innerHTML=opa[0]
-    B.innerHTML=opb[0]
-    C.innerHTML=opc[0]
-    D.innerHTML=opd[0]
-
-
-    function checka(){
-
-        ourarr[ind]="A"
-        if(ourarr[ind]==ansarr[ind]){
-            A.style.backgroundColor="green"
-            B.style.backgroundColor="black"
-            C.style.backgroundColor="black"
-            D.style.backgroundColor="black"
-
-            p2.style.color="green"
-            ind++
-            mainqs.innerHTML=quesarr[ind]
-            A.innerHTML=opa[ind]
-            B.innerHTML=opb[ind]
-            C.innerHTML=opc[ind]
-            D.innerHTML=opd[ind]
-        }
-        else{
-            A.style.backgroundColor="red"
-        }
+        answers[currentQuestionIndex].forEach((answer, index) => {
+            const option = document.createElement("div");
+            option.classList.add("opt");
+            option.id = String.fromCharCode(65 + index); // A, B, C, D
+            option.textContent = answer;
+            option.addEventListener("click", checkAnswer);
+            optionsContainer.appendChild(option);
+        });
     }
 
-        function checkb(){
+    function checkAnswer(event) {
+        const selectedAnswer = event.target.id;
+        const isCorrect = selectedAnswer === correctAnswers[currentQuestionIndex];
 
-        ourarr[ind]="B"
-        if(ourarr[ind]==ansarr[ind]){
-            B.style.backgroundColor="green"
-            A.style.backgroundColor="black"
-            C.style.backgroundColor="black"
-            D.style.backgroundColor="black"
-            p2.style.color="green"
-            ind++
-            mainqs.innerHTML=quesarr[ind]
-            A.innerHTML=opa[ind]
-            B.innerHTML=opb[ind]
-            C.innerHTML=opc[ind]
-            D.innerHTML=opd[ind]
+        if (isCorrect) {
+            event.target.classList.add("correct");
+            score++;
+        } else {
+            event.target.classList.add("incorrect");
+            //Show correct answer highlighting
+            const correctOption = document.getElementById(correctAnswers[currentQuestionIndex]);
+            correctOption.classList.add("correct");
         }
-        else{
-            B.style.backgroundColor="red"
-        }
+
+        setTimeout(() => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quesarr.length) {
+                displayQuestion();
+            } else {
+                alert("Game Over! Your score is: " + score);
+            }
+        }, 1500); // Wait for 1.5 seconds before proceeding
+
     }
 
-            function checkc(){
+    function applyFiftyFifty() {
+        if (usedFiftyFifty) return;
+        usedFiftyFifty = true;
+        fiftyFiftyButton.disabled = true; // Disable the button after use
 
-        ourarr[ind]="c"
-        if(ourarr[ind]==ansarr[ind]){
-            C.style.backgroundColor="green"
-            A.style.backgroundColor="black"
-            B.style.backgroundColor="black"
-            D.style.backgroundColor="black"
-            p2.style.color="green"
-            ind++
-            mainqs.innerHTML=quesarr[ind]
-            A.innerHTML=opa[ind]
-            B.innerHTML=opb[ind]
-            C.innerHTML=opc[ind]
-            D.innerHTML=opd[ind]
-        }
-        else{
-            C.style.backgroundColor="red"
-        }
+        const incorrectOptions = answers[currentQuestionIndex].filter((answer, index) => String.fromCharCode(65 + index) !== correctAnswers[currentQuestionIndex]);
+        const optionToRemove = incorrectOptions[Math.floor(Math.random() * incorrectOptions.length)]; //Randomly remove one incorrect option
+
+        const options = document.querySelectorAll(".opt");
+        options.forEach(option => {
+            if (option.textContent === optionToRemove) {
+                option.remove();
+            }
+        });
     }
 
-            function checkd(){
+    fiftyFiftyButton.addEventListener("click", applyFiftyFifty);
 
-        ourarr[ind]="D"
-        if(ourarr[ind]==ansarr[ind]){
-            D.style.backgroundColor="green"
-            A.style.backgroundColor="black"
-            B.style.backgroundColor="black"
-            C.style.backgroundColor="black"
-
-            p2.style.color="green"
-            ind++
-            mainqs.innerHTML=quesarr[ind]
-            A.innerHTML=opa[ind]
-            B.innerHTML=opb[ind]
-            C.innerHTML=opc[ind]
-            D.innerHTML=opd[ind]
-        }
-        else{
-            D.style.backgroundColor="red"
-        }
-    }
-
-
-    
-
-
+    displayQuestion();
 </script>
-
 </html>
