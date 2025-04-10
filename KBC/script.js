@@ -16,11 +16,9 @@ let currentQuestion = 0;
 let score = 0;
 let lifelineUsed = false;
 
-
 const mainqs = document.getElementById("mainqs");
 const optionsContainer = document.getElementById("options");
-const fiftyFifty = document.getElementById("fiftyFifty");
-
+const fiftyFiftyBtn = document.getElementById("fiftyFifty");
 
 function loadQuestion() {
   const questionData = questions[currentQuestion];
@@ -62,8 +60,7 @@ function checkAnswer(selectedAnswer) {
   }
 }
 
-
-function fiftyFifty() {
+function useFiftyFifty() {
   if (!lifelineUsed) {
     lifelineUsed = true;
     const questionData = questions[currentQuestion];
@@ -72,24 +69,26 @@ function fiftyFifty() {
       (option, index) => index !== correctIndex
     );
 
-    let optionsToRemove = incorrectOptions.splice(0,2);
-    optionsContainer.innerHTML = ""; //Clear previous options
-    const correctOption = document.createElement("button");
-    correctOption.textContent = questionData.answer;
-    correctOption.classList.add(
-      "bg-blue-500",
-      "hover:bg-blue-700",
-      "text-white",
-      "font-bold",
-      "py-3",
-      "px-6",
-      "rounded",
-      "w-full"
-    );
-    correctOption.addEventListener("click", () => checkAnswer(questionData.answer));
-    optionsContainer.appendChild(correctOption);
+    let optionsToRemove = incorrectOptions.splice(0, 2);
+    const remainingOptions = [questionData.answer, ...optionsToRemove];
 
-    
+    optionsContainer.innerHTML = "";
+    remainingOptions.forEach((option) => {
+      const button = document.createElement("button");
+      button.textContent = option;
+      button.classList.add(
+        "bg-blue-500",
+        "hover:bg-blue-700",
+        "text-white",
+        "font-bold",
+        "py-3",
+        "px-6",
+        "rounded",
+        "w-full"
+      );
+      button.addEventListener("click", () => checkAnswer(option));
+      optionsContainer.appendChild(button);
+    });
   } else {
     alert("50/50 lifeline already used!");
   }
@@ -97,8 +96,7 @@ function fiftyFifty() {
 
 function gameOver() {
   alert(`Game Over! Your final score is: ${score}`);
-  //You can add a functionality to restart the game or display final score on the screen.
 }
 
-fiftyFifty.addEventListener("click", fiftyFifty);
+fiftyFiftyBtn.addEventListener("click", useFiftyFifty);
 loadQuestion();
